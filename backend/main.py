@@ -26,6 +26,7 @@ async def lifespan(_app: FastAPI):
 
 
 app = FastAPI(title="VALENCE API", version="1.0.0", lifespan=lifespan)
+init_db()
 
 app.add_middleware(
     CORSMiddleware,

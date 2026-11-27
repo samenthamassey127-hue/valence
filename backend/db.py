@@ -3,13 +3,18 @@
 from __future__ import annotations
 
 import json
+import os
 import sqlite3
 from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterator
 
-DB_PATH = Path(__file__).resolve().parent / "valence.db"
+DB_PATH = (
+    Path("/tmp/valence.db")
+    if os.getenv("VERCEL")
+    else Path(__file__).resolve().parent / "valence.db"
+)
 
 SEED_STATUTES: list[dict[str, Any]] = [
     {
